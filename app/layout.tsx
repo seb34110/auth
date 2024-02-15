@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Logo from "@/public/iteeFlix.png";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Image
+          src={Logo}
+          alt="Logo"
+          className="absolute left-4 top-4 object-contain md:left-10 md:top-6"
+          priority
+        />
+        {children}
+      </body>
     </html>
   );
 }
