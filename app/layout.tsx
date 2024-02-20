@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Logo from "@/public/iteeFlix.png";
-import Image from "next/image";
+import { NextAuthProvider } from "./components/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,19 +12,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Image
-          src={Logo}
-          alt="Logo"
-          className="absolute left-4 top-4 object-contain md:left-10 md:top-6"
-          priority
-        />
-        {children}
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );

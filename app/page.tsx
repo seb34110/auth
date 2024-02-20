@@ -1,9 +1,13 @@
-import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./utils/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col items-center justify-center h-screen text-4xl">
-      <h1>Home Page</h1>
-    </div>
-  );
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return redirect("/login");
+  } else {
+    return redirect("/home");
+  }
 }
